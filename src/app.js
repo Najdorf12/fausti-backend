@@ -8,8 +8,8 @@ import newsRoutes from "./routes/news.routes.js";
 import tournamentsRoutes from "./routes/tournaments.routes.js";
 
 const app = express();
-app.use(cors({/*  http://localhost:5173 https://evas-del-eden-frontend.vercel.app */
-    origin:"http://localhost:5173",
+app.use(cors({/*  http://localhost:5173 https://fausti-oro.vercel.app/ https://evas-del-eden-frontend.vercel.app */
+    origin:"https://fausti-oro.vercel.app/",
     credentials: true,
 }));
 
