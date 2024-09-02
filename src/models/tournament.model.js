@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const newSchema = new Schema(
+const tournamentSchema = new Schema(
   {
     title: {
       type: String,
@@ -12,11 +12,14 @@ const newSchema = new Schema(
     content: {
       type: String,
     },
-    category: {
+    location: {
       type: String,
     },
     isActive: {
       type: Boolean,
+    },
+    time: {
+        type: String,
     },
     images: [
       {
@@ -34,4 +37,4 @@ const newSchema = new Schema(
   }
 );
 
-export default mongoose.model("New", newSchema);
+export default mongoose.model("Tournament", tournamentSchema);

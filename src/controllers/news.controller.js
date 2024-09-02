@@ -12,7 +12,7 @@ export const getNews = async (req, res) => {
 };
 
 export const createNew = async (req, res) => {
-  const { title, description, content, category, images } = req.body;
+  const { title, description, content, category, images, isActive } = req.body;
 
   try {
     const newNew = new New({
@@ -20,6 +20,7 @@ export const createNew = async (req, res) => {
       description,
       content,
       category,
+      isActive,
       images,
     });
 
