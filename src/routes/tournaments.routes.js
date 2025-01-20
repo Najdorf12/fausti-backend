@@ -6,6 +6,7 @@ import {
     deleteTournament,
     updateTournament
 } from "../controllers/tournaments.controller.js";
+import { deleteOneImage } from "../controllers/news.controller.js";
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.get("/:id", getTournament);
 router.delete("/:id", deleteTournament);
 router.put("/:id", updateTournament)
 
-/* router.get("/category/:categoryName", getEvaByCategory) */
+router.delete("/delete-image/:img(*)", deleteOneImage);
+
 
 export default router;

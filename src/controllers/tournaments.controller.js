@@ -79,15 +79,6 @@ export const updateTournament = async (req, res) => {
     if (!tournament) {
       return res.status(404).json({ message: "Tournament not found" });
     }
-
-    // Verifica si hay nuevas imágenes y elimina las anteriores
-    if (req.body.images) {
-      // Eliminar las imágenes anteriores de Cloudinary
-      for (const image of tournament.images) {
-        await deleteImage(image.public_id);
-      }
-    }
-
     // Actualiza el torneo con los nuevos datos
     const updatedTournament = await Tournament.findByIdAndUpdate(
       req.params.id,

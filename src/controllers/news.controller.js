@@ -71,27 +71,17 @@ export const getNew = async (req, res) => {
 };
 
 export const updateNew = async (req, res) => {
-  console.log(req.body)
+  const {title,description,content,category,isActive} = req.body
   try {
     const notice = await New.findById(req.params.id);
     if (!notice) {
       return res.status(404).json({ message: "Noticia no encontrada" });
     }
-
-    // Verifica si se han subido nuevas imágenes
-  /*   if (req.body.images) {
-      // Si hay imágenes existentes, elimina las anteriores solo si hay nuevas imágenes
-      for (const image of notice.images) {
-        await deleteImage(image.public_id); // Eliminar la imagen anterior de Cloudinary
-      }
-    }  */
-
-    // Actualiza la noticia, incluyendo las imágenes
-    notice.title = req.body.title;
-    notice.description = req.body.description;
-    notice.content = req.body.content;
-    notice.category = req.body.category;
-    notice.isActive = req.body.isActive;
+    notice.title = title;
+    notice.description = description;
+    notice.content = content;
+    notice.category = category;
+    notice.isActive = isActive;
     notice.images =
       req.body.images.length > 0 ? req.body.images : notice.images; // Conservar imágenes anteriores si no hay nuevas
 
@@ -105,7 +95,6 @@ export const updateNew = async (req, res) => {
 
 export const deleteOneImage = async (req, res) => {
   try {
-    console.log("Public ID recibido:", req.params.img);
     const { img: public_id } = req.params;
 
     if (!public_id) {
