@@ -71,15 +71,53 @@ export const getNew = async (req, res) => {
 };
 
 export const updateNew = async (req, res) => {
+  console.log(req.body)
   try {
-    const notice = await New.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!notice) return res.status(404).json({ message: "New not found" });
-    res.json(notice);
+    const notice = await New.findById(req.params.id);
+    if (!notice) {
+      return res.status(404).json({ message: "Noticia no encontrada" });
+    }
+
+    // Verifica si se han subido nuevas imágenes
+  /*   if (req.body.images) {
+      // Si hay imágenes existentes, elimina las anteriores solo si hay nuevas imágenes
+      for (const image of notice.images) {
+        await deleteImage(image.public_id); // Eliminar la imagen anterior de Cloudinary
+      }
+    }  */
+
+    // Actualiza la noticia, incluyendo las imágenes
+    notice.title = req.body.title;
+    notice.description = req.body.description;
+    notice.content = req.body.content;
+    notice.category = req.body.category;
+    notice.isActive = req.body.isActive;
+    notice.images =
+      req.body.images.length > 0 ? req.body.images : notice.images; // Conservar imágenes anteriores si no hay nuevas
+
+    const updatedNotice = await notice.save();
+    res.json(updatedNotice);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Error al actualizar la noticia" });
+  }
+};
+
+export const deleteOneImage = async (req, res) => {
+  try {
+    console.log("Public ID recibido:", req.params.img);
+    const { img: public_id } = req.params;
+
+    if (!public_id) {
+      return res.status(400).json({ message: "Falta el public_id de la imagen" });
+    }
+
+    await deleteImage(public_id);
+
+    return res.status(200).json({ message: "Imagen eliminada correctamente" });
+  } catch (error) {
+    console.error("Error al procesar la eliminación de la imagen:", error);
+    return res.status(500).json({ message: "Error al eliminar la imagen" });
   }
 };
 

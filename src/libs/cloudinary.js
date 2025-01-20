@@ -18,6 +18,10 @@ export const uploadImage = async (filePath) => {
   });
 };
 
-export const deleteImage = async (publicId) => {
-  return await cloudinary.uploader.destroy(publicId);
+export const deleteImage = async (public_id) => {
+  try {
+    await cloudinary.uploader.destroy(public_id);
+  } catch (error) {
+    console.error("Error al eliminar imagen de Cloudinary:", error);
+  }
 };

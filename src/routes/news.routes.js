@@ -4,7 +4,8 @@ import {
     createNew,
     getNew,
     deleteNew,
-    updateNew
+    updateNew,
+    deleteOneImage
 } from "../controllers/news.controller.js";
 
 const router = Router();
@@ -16,6 +17,6 @@ router.get("/:id", getNew);
 router.delete("/:id", deleteNew);
 router.put("/:id", updateNew);
 
-/* router.get("/category/:categoryName", getEvaByCategory) */
+router.delete("/delete-image/:img(*)", deleteOneImage);
 
 export default router;

@@ -27,4 +27,5 @@ app.use("/api/auth", authRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/send-email", emailRoutes);
 
+
 export default app;
