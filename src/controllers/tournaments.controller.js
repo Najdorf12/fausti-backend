@@ -74,15 +74,30 @@ export const getTournament = async (req, res) => {
 
 export const updateTournament = async (req, res) => {
   try {
-    const tournament = await Tournament.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (!tournament) return res.status(404).json({ message: "Tournament not found" });
-    res.json(tournament);
+    // Obtén el torneo existente
+    const tournament = await Tournament.findById(req.params.id);
+    if (!tournament) {
+      return res.status(404).json({ message: "Tournament not found" });
+    }
+
+    // Verifica si hay nuevas imágenes y elimina las anteriores
+    if (req.body.images) {
+      // Eliminar las imágenes anteriores de Cloudinary
+      for (const image of tournament.images) {
+        await deleteImage(image.public_id);
+      }
+    }
+
+    // Actualiza el torneo con los nuevos datos
+    const updatedTournament = await Tournament.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    res.json(updatedTournament);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: error.message });
   }
 };
-
-
