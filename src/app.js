@@ -14,7 +14,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://fausti-oro.vercel.app",
-      "https://www.orofaustino.com/",
+      "https://www.orofaustino.com",
     ],
     credentials: true,
   })
