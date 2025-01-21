@@ -11,7 +11,11 @@ import emailRoutes from "./routes/email.routes.js";
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://fausti-oro.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://fausti-oro.vercel.app",
+      "https://www.orofaustino.com/",
+    ],
     credentials: true,
   })
 );
@@ -26,6 +30,5 @@ app.use("/api/tournaments", tournamentsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/send-email", emailRoutes);
-
 
 export default app;
