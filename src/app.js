@@ -8,6 +8,7 @@ import newsRoutes from "./routes/news.routes.js";
 import gamesRoutes from "./routes/games.routes.js";
 import emailRoutes from "./routes/email.routes.js";
 import tournamentsRoutes from "./routes/tournaments.routes.js";
+import palmaresRoutes from "./routes/palmares.routes.js";
 
 const app = express();
 app.use(
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 app.use("/api/news", newsRoutes);
 app.use("/api/tournaments", tournamentsRoutes);
+app.use("/api/palmares", palmaresRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/send-email", emailRoutes);
