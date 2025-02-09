@@ -5,9 +5,10 @@ import cors from "cors";
 
 import authRoutes from "./routes/auth.routes.js";
 import newsRoutes from "./routes/news.routes.js";
-import tournamentsRoutes from "./routes/tournaments.routes.js";
 import gamesRoutes from "./routes/games.routes.js";
 import emailRoutes from "./routes/email.routes.js";
+import tournamentsRoutes from "./routes/tournaments.routes.js";
+
 const app = express();
 app.use(
   cors({
