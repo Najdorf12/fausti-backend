@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 const EMAIL_USER = "agustin.morro@gmail.com";
-const EMAIL_PASS = "aptb fjnd oqgs hxsy";
+const EMAIL_PASS = "okhk eidh lzjh johf";
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
